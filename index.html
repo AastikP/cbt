@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+</head>
+<body>
+    
+    <h1 id="text">
+        <span id="days"></span> days 
+        <span id="hours"></span> hours 
+        <span id="mins"></span> mins 
+        <span id="seconds"></span> seconds
+    </h1>
+
+    <style>
+
+        span
+        {
+            color: red;
+        }
+
+        #text
+        {
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            top:250px;
+            position: relative;
+            font-size: 10svh;
+        }
+
+    </style>
+
+    <script>
+
+        var time = new Date("2025-03-04T15:00:00").getTime();
+
+        var countdownFunction = setInterval(function() 
+        
+        {
+
+            var now = new Date().getTime();
+
+            var diff = time - now;
+
+            var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("mins").innerHTML = mins;
+            document.getElementById("seconds").innerHTML = seconds;
+
+            if (diff < 0) {
+                clearInterval(countdownFunction);
+                document.getElementById("text").innerHTML = "freedom finally!";
+            }
+        }
+        
+        , 1000); // Update every second
+    </script>
+
+</body>
+</html>
