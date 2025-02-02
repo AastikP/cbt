@@ -4,54 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Countdown Timer</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 8vh;
+            margin: 10px 0;
+        }
+
+        #e {
+            font-size: 5vh;
+            font-family: 'Verdana', sans-serif;
+            color: #00bcd4;
+            margin-bottom: 20px;
+        }
+
+        span {
+            color: #ff5722;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 6vh;
+            }
+            #e {
+                font-size: 4vh;
+            }
+        }
+    </style>
 </head>
 <body>
     
+    <div id="e"></div>
     <h1 id="text">
         <span id="days"></span> days 
         <span id="hours"></span> hours 
         <span id="mins"></span> mins 
         <span id="seconds"></span> seconds
-        <span id="e"></span>
     </h1>
 
-    <style>
-
-        span
-        {
-            color: red;
-        }
-
-        #text
-        {
-            font-family: 'Courier New', Courier, monospace;
-            text-align: center;
-            top:250px;
-            position: relative;
-            font-size: 10svh;
-        }
-
-        #e
-        {
-            font-family:'Times New Roman', Times, serif;
-            text-align: center;
-            top: -200px;
-            color: cornflowerblue;
-            position: relative;
-        }
-
-    </style>
-
     <script>
-
         var time = new Date("2025-03-03T16:00:00").getTime();
 
-        var countdownFunction = setInterval(function() 
-        
-        {
-
+        var countdownFunction = setInterval(function() {
             var now = new Date().getTime();
-
             var diff = time - now;
 
             var days = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -59,10 +66,9 @@
             var mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-            var tseconds = ((days*24*60*60)+(hours*60*60)+(mins*60)+seconds) + " " + "seconds"
-
-            document.getElementById("e").innerHTML = tseconds
-
+            var tseconds = ((days*24*60*60) + (hours*60*60) + (mins*60) + seconds) + " seconds";
+            document.getElementById("e").innerHTML = tseconds;
+            
             document.getElementById("days").innerHTML = days;
             document.getElementById("hours").innerHTML = hours;
             document.getElementById("mins").innerHTML = mins;
@@ -70,11 +76,10 @@
 
             if (diff < 0) {
                 clearInterval(countdownFunction);
-                document.getElementById("text").innerHTML = "freedom finally!";
+                document.getElementById("text").innerHTML = "Freedom finally!";
+                document.getElementById("e").innerHTML = "";
             }
-        }
-        
-        , 1000); // Update every second
+        }, 1000);
     </script>
 
 </body>
